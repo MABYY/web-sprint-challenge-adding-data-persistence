@@ -33,7 +33,17 @@ const create = async newpost => {
           }
 
     const [id] = await db('projects').insert(new_Project) 
-    return getById(id)
+
+    const check_newPost = await getById(id)
+
+    const new_return = {
+      "project_id": check_newPost.project_id,
+      "project_name": check_newPost.project_name,
+      "project_description": check_newPost.project_description,
+      "project_completed": check_newPost.project_completed == 0 ? false : true
+    }
+
+    return new_return
   }
 
 module.exports = {
