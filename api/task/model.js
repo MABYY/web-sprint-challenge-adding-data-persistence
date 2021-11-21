@@ -46,7 +46,15 @@ const create = async task => {
            "project_id":task.project_id
         }
     const [id] = await db('tasks').insert(create_task) 
-    return getById(id)
+    const response = await getById(id)
+    const tuned_response =  {
+              "task_description": response.task_description,
+              "task_notes":response.task_notes,
+              "task_completed":response.task_completed == 1 ? true: false,
+              "project_id":response.project_id
+   }
+
+    return tuned_response
   }
 
 module.exports = {
