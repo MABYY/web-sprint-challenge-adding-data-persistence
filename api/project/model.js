@@ -23,13 +23,20 @@ const getById = (id) => {
     .first()
   }
   
-const create = async project => {
-    const [id] = await db('projects').insert(project) 
+const create = async newpost => {
+
+  const new_Project = {
+            "project_id": newpost.project_id,
+            "project_name": newpost.project_name,
+            "project_description": newpost.project_description,
+            "project_completed": newpost.project_completed == false ? 0 : 1
+          }
+
+    const [id] = await db('projects').insert(new_Project) 
     return getById(id)
   }
 
 module.exports = {
-
     findAll,
     getById,
     create

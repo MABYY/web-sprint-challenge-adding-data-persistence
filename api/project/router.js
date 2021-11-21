@@ -26,7 +26,6 @@ router.get('/:id', async (req,res,next) => {
 
 router.post('/', async (req,res,next) => {
     try{
-
         const newProject = await Projects.create(req.body)
         res.status(201).json(newProject)
     } catch (next) {
