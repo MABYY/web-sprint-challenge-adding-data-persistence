@@ -2,6 +2,7 @@
 const db = require('../../data/dbConfig')
 
 async function findAll() {
+  
     const result =  await db('tasks as t')
                         .leftJoin("projects as p", "t.project_id", "=","p.project_id")
                         .select('t.task_id',
@@ -38,7 +39,7 @@ const getById = (id) => {
   
 const create = async task => {
 
-       const create_task = {
+    const create_task = {
            "task_description": task.task_description,
            "task_notes":task.task_notes,
            "task_completed":task.task_completed == true? 1:0,
