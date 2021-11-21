@@ -32,7 +32,7 @@ router.post('/', async (req,res,next) => {
                 message: "Task description  or project id is missing"
             }) 
 
-        } else if( typeof project_id !== 'integer'){
+        } else if( typeof project_id == 'string'){
             res.status(422).json({
                 message: " Project id must be an integer"
             }) 
