@@ -35,7 +35,7 @@ router.post('/', async (req,res,next) => {
             }) 
 
         } else if( !projectExists|| !typeof project_id == 'number'){
-            res.status(404).json({
+            res.status(422).json({
                 message: " Project must be valid"
             }) 
         } else { 
