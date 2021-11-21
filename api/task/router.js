@@ -34,7 +34,7 @@ router.post('/', async (req,res,next) => {
                 message: "Task description  or project id is missing"
             }) 
 
-        } else if( !projectExists|| typeof project_id == 'string'){
+        } else if( !projectExists|| typeof project_id == 'number'){
             res.status(422).json({
                 message: " Project must be valid"
             }) 
