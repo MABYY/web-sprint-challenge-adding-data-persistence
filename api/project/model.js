@@ -17,8 +17,8 @@ async function findAll() {
   return new_Project
 }
 
-const getById = (id) => {
-    return db('projects')
+const getById = async (id) => {
+    return await db('projects')
     .where('project_id',id)
     .first()
   }
