@@ -26,8 +26,16 @@ router.get('/:id', async (req,res,next) => {
 
 router.post('/', async (req,res,next) => {
     try{
-        const newProject = await Projects.create(req.body)
-        res.status(201).json(newProject)
+        if(!req.body.project_name) {
+            res.status(400).json({ 
+                message : "Complete the project name"           
+            })
+
+        } else {
+            const newProject = await Projects.create(req.body)
+            res.status(201).json(newProject)
+        }
+
     } catch (next) {
 
     }

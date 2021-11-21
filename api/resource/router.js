@@ -24,10 +24,20 @@ router.get('/:id', async (req,res,next) => {
 })
 
 router.post('/', async (req,res,next) => {
+    
     try{
+        const new_name = await Resources.getByName(req.body.resource_name)
+        if(new_name) {
+            res.status(400).json({ 
+                message : "The resource name is already taken"           
+            })
 
-        const newResource = await Resources.create(req.body)
-        res.status(201).json(newResource)
+        } else {
+            const newResource = await Resources.create(req.body)
+            res.status(201).json(newResource)
+        }
+        //const newResource = await Resources.create(req.body)
+        //res.status(201).json(newResource)
     } catch (next) {
 
     }
