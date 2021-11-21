@@ -32,9 +32,9 @@ router.post('/', async (req,res,next) => {
                 message: "Task description  or project id is missing"
             }) 
 
-        } else if( typeof project_id == 'string'){
-            res.status(415).json({
-                message: " The project_id does not exist"
+        } else if( typeof project_id !== 'integer'){
+            res.status(422).json({
+                message: " Project id must be an integer"
             }) 
         } else { 
             const newTask = await Tasks.create(req.body)
