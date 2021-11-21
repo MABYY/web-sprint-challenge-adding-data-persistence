@@ -4,7 +4,14 @@
   "main": "index.js",
   "scripts": {
     "test": "cross-env NODE_ENV=testing jest --verbose --runInBand --silent",
-    "server":"nodemon index.js"
+    "server": "nodemon index.js",
+    "up": "knex migrate:up",
+    "down": "knex migrate:down",
+    "latest": "knex migrate:latest",
+    "rollback": "knex migrate:rollback",
+    "mignumber": "knex migrate:currentVersion",
+    "cleanup": "knex seed:run --specific-cleanup.js",
+    "seed": "knex seed:run"
   },
   "repository": {
     "type": "git",
@@ -19,6 +26,12 @@
     "supertest": "6.1.6"
   },
   "dependencies": {
-    "express": "^4.17.1"
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "env": "^0.0.2",
+    "express": "^4.17.1",
+    "helmet": "^4.6.0",
+    "knex": "^0.95.14",
+    "sqli": "^0.0.4"
   }
 }
