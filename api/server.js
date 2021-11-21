@@ -1,9 +1,11 @@
 const express = require("express")
 const server = express()
-// const RecipieRoute = require('./recipie-router')
+const projectRoute = require('./project/router')
+const resourceRoute = require('./resource/router')
 
 server.use(express.json())
-// server.use('/api/recipie',RecipieRoute)
+server.use('/api/projects',projectRoute)
+server.use('/api/resources',resourceRoute)
 
 server.get('/',(req,res) => {
     res.send(`<h1>Sprint Challenge</h1>`)
