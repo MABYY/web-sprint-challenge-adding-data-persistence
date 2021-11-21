@@ -37,7 +37,14 @@ const getById = (id) => {
   }
   
 const create = async task => {
-    const [id] = await db('tasks').insert(task) 
+
+       const create_task = {
+           "task_description": task.task_description,
+           "task_notes":task.task_notes,
+           "task_completed":task.task_completed == true? 1:0,
+           "project_id":task.project_id
+        }
+    const [id] = await db('tasks').insert(create_task) 
     return getById(id)
   }
 
