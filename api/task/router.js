@@ -27,13 +27,13 @@ router.get('/:id', async (req,res,next) => {
 router.post('/', async (req,res,next) => {
     try{
         const { task_description , project_id } = req.body
-        const check_project_id = Projects.getById(project_id)
-        if ( !task_description ) {
+        const check_project_id = Projects.getById()
+        if ( !task_description || !project_id) {
             res.status(400).json({
                 message: "Task description  or project id is missing"
             }) 
 
-        } else if(!check_project_id){
+        } else if( typeof project_id == 'string'){
             res.status(400).json({
                 message: " The project_id does not exist"
             }) 
