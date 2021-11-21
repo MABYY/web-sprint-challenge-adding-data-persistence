@@ -36,8 +36,6 @@ router.post('/', async (req,res,next) => {
             const newResource = await Resources.create(req.body)
             res.status(201).json(newResource)
         }
-        //const newResource = await Resources.create(req.body)
-        //res.status(201).json(newResource)
     } catch (next) {
 
     }
