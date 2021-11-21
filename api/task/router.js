@@ -33,7 +33,7 @@ router.post('/', async (req,res,next) => {
             }) 
 
         } else if( typeof project_id == 'string'){
-            res.status(400).json({
+            res.status(422).json({
                 message: " The project_id does not exist"
             }) 
         } else { 
