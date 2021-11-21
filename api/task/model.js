@@ -19,7 +19,7 @@ async function findAll() {
                         "task_id": row.task_id,
                         "task_description": row.task_description,
                         "task_notes":row.task_notes,
-                        "task_completed":row.task_notes == 0? false : true,
+                        "task_completed":row.task_completed == 0? false : true,
                         "project_name":row.project_name,
                         "project_description":row.project_description
                 
