@@ -5,7 +5,20 @@ function findAll() {
     return db('projects')
 }
 
+const getById = (id) => {
+    return db('projects')
+    .where('project_id',id)
+    .first()
+  }
+  
+const create = async project => {
+    const [id] = await db('projects').insert(project) 
+    return getById(id)
+  }
+
 module.exports = {
 
-    findAll
+    findAll,
+    getById,
+    create
 }

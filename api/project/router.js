@@ -15,6 +15,25 @@ router.get('/', async (req,res,next) => {
 })
 
 
+router.get('/:id', async (req,res,next) => {
+    try{
+        const project = await Projects.getById(req.params.id)
+        res.status(200).json(project)
+    } catch(next) {
+
+    }
+})
+
+router.post('/', async (req,res,next) => {
+    try{
+
+        const newProject = await Projects.create(req.body)
+        res.status(201).json(newProject)
+    } catch (next) {
+
+    }
+})
+
 router.use ('/', (error,req,res,next) => {
     res.status(error.status || 500).json({
         server_message:"Something went wrong - projects",
