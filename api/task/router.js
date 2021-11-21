@@ -2,6 +2,7 @@
 const express = require('express')
 const router = express.Router()
 const Tasks = require('./model')
+const Projects = require('../project/model')
 
 
 router.get('/', async (req,res,next) => {
@@ -26,14 +27,15 @@ router.get('/:id', async (req,res,next) => {
 router.post('/', async (req,res,next) => {
     try{
         const { task_description , project_id } = req.body
-        if ( !task_description || !project_id) {
+        const check_project_id = Projects.getById(project_id)
+        if ( !task_description ) {
             res.status(400).json({
                 message: "Task description  or project id is missing"
             }) 
 
-        } else if( typeof project_id == 'string'){
+        } else if(!check_project_id){
             res.status(400).json({
-                message: " The project_id must be an integer"
+                message: " The project_id does not exist"
             }) 
         } else { 
             const newTask = await Tasks.create(req.body)
