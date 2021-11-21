@@ -29,12 +29,18 @@ router.post('/', async (req,res,next) => {
         const { task_description , project_id } = req.body
         const projectExists = await Projects.getById(project_id)
 
-        if ( !task_description || ! project_id) {
+        if ( !task_description  {
             res.status(400).json({
                 message: "Task description  or project id is missing"
             }) 
 
-        } else if( !projectExists|| !typeof project_id == 'number'){
+        } 
+        else if( !project_id){
+            res.status(422).json({
+                message: " Project must be valid"
+            }) 
+        } 
+        else if( !projectExists|| !typeof project_id == 'number'){
             res.status(422).json({
                 message: " Project must be valid"
             }) 
