@@ -26,12 +26,10 @@ router.get('/:id', async (req,res,next) => {
 
 router.post('/', async (req,res,next) => {
     try{
-        const  {project_name,project_description,project_completed} = req.body
-        
-        if(!project_name || !project_description || typeof project_completed !== 'boolean') {
+        if(!req.body.project_name) {
             res.status(400).json({ 
                 message : "Complete the project name"           
-            }) 
+            })
 
         } else {
             const newProject = await Projects.create(req.body)
